@@ -1,37 +1,35 @@
 #!/bin/bash
 
 # Script name: naf_initiate_ms_server_audit.sh
-# Version: 0.14.9.21
+# Version: 0.15.2.24
 # Author: Willem D'Haese
 # Created on: 15/09/2014
 # Purpose: Quick action bash script that will initiate naf_initiate_ms_server_audit.ps1
-# History:
-#       15/09/2014 => Inital configuration
-#       21/09/2014 => Updated code and documentation
+# Recent History:
+#   15/09/2014 => Inital configuration
+#   21/09/2014 => Updated code and documentation
+#	24/02/2015 => Cleanup and compatibility with NAF / Reactor
 # Copyright:
-# This program is free software: you can redistribute it and/or modify it under the terms of the
-# GNU General Public License as published by the Free Software Foundation, either version 3 of
-# the License, or (at your option) any later version.
-# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-# without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU General Public License for more details.You should have received a copy of the GNU
-# General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#	This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published
+#	by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed 
+#	in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
+#	PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public 
+#	License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-HOSTNAME=$1
-LOGFILE=/var/log/naf_initiate_ms_server_audit.log
-NOW=$(date '+%Y-%m-%d -- %H:%M:%S')
-echo "$NOW : Audit initiated on $HOSTNAME." >> $LOGFILE
+Hostname=$1
+Logfile=/var/log/naf_actions.log
+Now=$(date '+%Y-%m-%d -- %H:%M:%S')
+echo "$NOW : Audit initiated on $Hostname
+/usr/local/nagios/libexec/check_nrpe -H $Hostname -t 300 -c naf_initiate_ms_server_audit -a $Hostname
+Exitcode=$?
 
-/usr/local/nagios/libexec/check_nrpe -H $HOSTNAME -t 300 -c naf_initiate_ms_server_audit -a $HOSTNAME
-EXITCODE=$?
+Now=$(date '+%Y-%m-%d -- %H:%M')
 
-NOW=$(date '+%Y-%m-%d -- %H:%M')
-
-if [ $EXITCODE -eq 0 ]
+if [ $Exitcode -eq 0 ]
 then
-        echo "$NOW : Audit succeeded on $HOSTNAME, with exit code $EXITCODE ." >> $LOGFILE
+        echo "$Now : Audit succeeded on $Hostname, with exit code $Exitcode ." >> $Logfile
 else
-        echo "$NOW : Aduit failed on $HOSTNAME, with exit code $EXITCODE ." >> $LOGFILE
+        echo "$Now : Audit failed on $Hostname, with exit code $Exitcode ." >> $Logfile
 fi
 
 exit
