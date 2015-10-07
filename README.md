@@ -1,13 +1,15 @@
-# Reactor action to inititae an audit on a Windows host and output to html or to Logstash
+# Reactor action to initiate an audit on a Windows host and output to html or to Logstash
 
 ### Idea
 
 Scheduling this script as a Reactor action for all your Windows hosts enables you to keep track of hardware and 
 software updates, and monitor changes made to shares, scheduled tasks or Windows services.
 
-### Screenshot
+### Screenshots
 
-![MS Windows Audit Html Output 01](/../screenshots/naf-windows-initiate-audit-01.png?raw=true "Optional Title")
+![MS Windows Audit Html Output 01](/../screenshots/naf-windows-initiate-audit-system-information-01.png?raw=true "Optional Title")
+
+![MS Windows Audit Html Output 01](/../screenshots/naf-windows-initiate-audit-software-01.png?raw=true "Optional Title")
 
 ### Status
 
