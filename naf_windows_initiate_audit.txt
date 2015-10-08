@@ -1,0 +1,1 @@
+/var/www/html/nagiosreactor/application/libraries/scripts/naf_windows_initiate_audit.sh -G %gateway% -T %target% -O %output% -L %logstashserver% -p %logstashport% -N %nagiosserver% -U %nagiosuser% -P %nagiospassword%
